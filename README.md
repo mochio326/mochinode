@@ -1,4 +1,4 @@
-# PySide NodeGraphBase
+# Node Graph Base
 
 ![NodeTool](/images/01.gif)
 
