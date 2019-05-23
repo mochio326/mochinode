@@ -1,7 +1,7 @@
 # # -*- coding: utf-8 -*-
 from mochinode.vendor.Qt import QtCore, QtGui, QtWidgets
 from mochinode import Node, View, Port
-from shiboken2 import wrapInstance
+
 
 class Window(QtWidgets.QWidget):
     def __init__(self, *args, **kwargs):
@@ -65,20 +65,13 @@ class Window(QtWidgets.QWidget):
 ============================================================
 '''
 
+
 def main(parent=None):
     from sys import exit, argv
     app = QtWidgets.QApplication(argv)
     nodeWindow = Window(parent)
     nodeWindow.show()
     exit(app.exec_())
-
-
-def maya_main():
-    import maya.OpenMayaUI as OpenMayaUI
-    mainWindowPtr = OpenMayaUI.MQtUtil.mainWindow()
-    mayaWindow = wrapInstance(long(mainWindowPtr), QtWidgets.QWidget)
-    nodeWindow = Window()
-    nodeWindow.show()
 
 
 if __name__ == '__main__':
