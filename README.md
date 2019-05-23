@@ -1,6 +1,5 @@
 # Node Graph Base
 
-![NodeTool](/images/01.gif)
 
 CGWORLD 2018 クリエイティブカンファレンス等で公開されたSQUARE ENIXの内製ツールであるnodalguiフレームワークをリスペクトして作成したノードグラフ用フレームワーク。
 
@@ -37,6 +36,8 @@ PyQt4, PyQt5, PySide, PySide2 のどれでも動く、Maya®に依存しない�
 ## サンプル
 
 test_app.pyがシンプルなテストアプリケーションサンプル
+
+![NodeTool](/images/01.gif)
 
 
 ## 改訂履歴
