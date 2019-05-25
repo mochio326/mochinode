@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Node Group='test' Label="Modulo(÷)">
+    <Port Type="out" Label="Out" ValueType="Int" DefaultValue="0" />
+    <Port Type="in" Label="Int1" ValueType="Int" DefaultValue="0" />
+    <Port Type="in" Label="Int2" ValueType="Int" DefaultValue="0" />
+    <Code>
+        if {{Int1}}.value == 0 or {{Int2}}.value == 0:
+            {{Out}}.value = 0
+        else:
+            {{Out}}.value = {{Int1}}.value / {{Int2}}.value
+    </Code>
+</Node>

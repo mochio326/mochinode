@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Node Group='test' Label="If">
+    <Port Type="out" Label="Result" ValueType="Int" DefaultValue="0" />
+    <Port Type="in" Label="Condition" ValueType="Bool" DefaultValue="True" />
+    <Port Type="in" Label="If_True" ValueType="Int" DefaultValue="0" />
+    <Port Type="in" Label="If_False" ValueType="Int" DefaultValue="0" />
+    <Code>
+        if {{Condition}}.value:
+            {{Result}}.value = {{If_True}}.value
+        else:
+            {{Result}}.value = {{If_False}}.value
+    </Code>
+</Node>

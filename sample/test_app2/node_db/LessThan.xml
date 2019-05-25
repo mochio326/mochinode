@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Node Group='test' Label="Less Than(&lt;)">
+    <Port Type="out" Label="Result" ValueType="Bool" DefaultValue="True" />
+    <Port Type="in" Label="First" ValueType="Int" DefaultValue="0" />
+    <Port Type="in" Label="Second" ValueType="Int" DefaultValue="0" />
+    <Code>
+            {{Result}}.value =  {{First}}.value &lt; {{Second}}.value
+    </Code>
+</Node>

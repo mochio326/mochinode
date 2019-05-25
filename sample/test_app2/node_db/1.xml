@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Node Group='test' Label="1">
+    <Port Type="out" Label="Out" ValueType="Int" DefaultValue="1" />
+    <Code>
+    </Code>
+</Node>

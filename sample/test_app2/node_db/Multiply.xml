@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Node Group='test' Label="Multiply(×)">
+    <Port Type="out" Label="Out" ValueType="Int" DefaultValue="0" />
+    <Port Type="in" Label="Int1" ValueType="Int" DefaultValue="0" />
+    <Port Type="in" Label="Int2" ValueType="Int" DefaultValue="0" />
+    <Code>
+        {{Out}}.value = {{Int1}}.value * {{Int2}}.value
+    </Code>>
+</Node>
