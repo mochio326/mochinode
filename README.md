@@ -6,11 +6,11 @@ http://www.jp.square-enix.com/tech/library/pdf/CGWCC2018_CRAFT.pdf
 
 PyQt4, PyQt5, PySide, PySide2 のどれでも動く、Maya®に依存しない等のポイントも出来るだけリスペクト。
   
-##mochinode
+## mochinode
 
 ノードグラフの基礎パッケージ
 
-###搭載機能
+### 搭載機能
 
 ##### View
 * ビューの操作
@@ -40,14 +40,14 @@ PyQt4, PyQt5, PySide, PySide2 のどれでも動く、Maya®に依存しない�
 
 mochinodeパッケージを利用したサンプルコード
 
-###test_app.py
+### test_app.py
 
 シンプルなテストアプリケーションサンプル
 コード内でノードを定義している
 
 ![NodeTool](/images/01.gif)
 
-##test_app2パッケージ
+## test_app2パッケージ
 
 ノードをxmlファイルに定義・管理するサンプル
 xml内にノード内での処理を記述して実行を行うことができる。
