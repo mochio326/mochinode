@@ -60,6 +60,7 @@ class Window(QtWidgets.QWidget):
     def clickedBoxButton(self, xml_name):
         box = node.create_node_for_xml(xml_name, self.view)
         self.view.add_node_on_center(box)
+        self.view.create_history()
         # box.recalculation()
 
 

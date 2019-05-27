@@ -7,7 +7,15 @@ from . import common
 
 class View2(View):
     def __init__(self, *args, **kwargs):
+        self._current_operation_history = 0
+        self._operation_history = [None]
         super(View2, self).__init__(*args, **kwargs)
+
+    def add_node_on_center(self, node):
+        super(View2, self).add_node_on_center(node)
+        node.port_expanded.connect(self.create_history)
+        node.pos_changed.connect(self.create_history)
+        node.port_connect_changed.connect(self.create_history)
 
     def mouseReleaseEvent(self, event):
         super(View2, self).mouseReleaseEvent(event)
@@ -22,6 +30,14 @@ class View2(View):
                 common.scene_save(self)
             if selected_action == load:
                 common.scene_load(self)
+
+    def auto_layout(self):
+        super(View2, self).auto_layout()
+        self.create_history()
+
+    def _delete(self):
+        super(View2, self)._delete()
+        self.create_history()
 
     def _copy(self):
         self._clipboard = {}
@@ -60,8 +76,27 @@ class View2(View):
         pass
 
     def _undo(self):
-        pass
+        self._undo_redo_base('undo')
 
     def _redo(self):
-        pass
+        self._undo_redo_base('redo')
+
+    def create_history(self):
+        data = common.get_save_data_from_scene_all(self)
+        # Undo Redo用の操作
+        if self._current_operation_history > 0:
+            del self._operation_history[0:self._current_operation_history]
+        self._operation_history.insert(0, data)
+        self._current_operation_history = 0
+
+    def _undo_redo_base(self, type_):
+        _add = 1 if type_ == 'undo' else -1
+        if self._current_operation_history >= len(self._operation_history) - _add:
+            return
+        if self._current_operation_history + _add < 0:
+            return
+        self._current_operation_history = self._current_operation_history + _add
+        data = self._operation_history[self._current_operation_history]
+        self.clear()
+        common.load_save_data(data, self)
 
