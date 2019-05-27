@@ -34,7 +34,17 @@ PyQt4, PyQt5, PySide, PySide2 のどれでも動く、Maya®に依存しない�
   - ラベルをクリックすることで折り畳みが可能
   - 折り畳み時にポートが非表示になった場合は仮のラインを表示
   
-  
+* シグナル
+
+    | name | 説明 |
+    ----|---- 
+    | moved | 移動t中に発動 |
+    | pos_changed | 移動後に発動 |
+    | port_expanded | ポートの開閉動作で発動 |
+    | port_connect_changed | ポートの接続状態変化で発動 |
+    | port_connect | ポートの接続が行われたら発動 |
+    | port_disconnect | ポートの接続解除が行われたら発動 |
+
   
 ## sample
 
@@ -55,6 +65,9 @@ sampleでは四則演算やIFノード等を実装
 
 
 ## 改訂履歴
+* 2019.05.26: 
+  - サンプルコードtest_app2パッケージにUndoとRedo機能を実装
+
 * 2019.05.25: 
   - サンプルコードtest_app2パッケージを追加
 
