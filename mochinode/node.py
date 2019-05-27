@@ -50,10 +50,17 @@ class NodeLabel(QtWidgets.QGraphicsItem):
 class Node(QtWidgets.QGraphicsObject):
     DEF_Z_VALUE = 0.1
 
+    # 移動中常に発動
     moved = QtCore.Signal()
+    # 移動後に発動
+    pos_changed = QtCore.Signal()
+    # ポートの開閉動作で発動
     port_expanded = QtCore.Signal()
+    # ポートの接続状態変化で発動
     port_connect_changed = QtCore.Signal()
+    # ポートの接続が行われたら発動
     port_connect = QtCore.Signal()
+    # ポートの接続解除が行われたら発動
     port_disconnect = QtCore.Signal()
 
 
@@ -222,6 +229,7 @@ class Node(QtWidgets.QGraphicsObject):
                     _l.setZValue(_l.DEF_Z_VALUE)
             super(Node, self).mouseReleaseEvent(event)
             self.moved.emit()
+            self.pos_changed.emit()
 
     def delete(self):
         for _p in self.children_ports_all_iter():
