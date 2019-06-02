@@ -396,7 +396,7 @@ class Port(QtWidgets.QGraphicsObject):
                 _l = self.lines[0]
                 # 別のラインが接続済みだったら削除しておく
                 if line_ != _l:
-                    _l.delete()
+                    _l.delete(none_emit=True)
                 self.lines = []
             line_.target = self
         else:

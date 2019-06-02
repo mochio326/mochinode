@@ -124,7 +124,7 @@ class Line(QtWidgets.QGraphicsPathItem):
         else:
             self.point_b = pos
 
-    def delete(self):
+    def delete(self, none_emit=False):
         if self.source is not None:
             port = self.source
             self.source.change_to_basic_color()
@@ -136,8 +136,8 @@ class Line(QtWidgets.QGraphicsPathItem):
 
         self.scene().views()[0].remove_item(self)
 
-        # 既に接続済みだった場合のみsignal発火
-        if self.port_connected:
+        # 既に接続済みだった場合とemitしないフラグを立ててない場合のみsignal発火
+        if self.port_connected and not none_emit:
             port.node.port_connect_changed.emit()
             port.node.port_disconnect.emit()
 
