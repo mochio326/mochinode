@@ -157,6 +157,9 @@ class PortLabel(QtWidgets.QGraphicsItem):
     def mouseReleaseEvent(self, event):
         self.port.node.mouseReleaseEvent(event)
 
+    def mouseDoubleClickEvent(self, event):
+        self.port.node.mouseDoubleClickEvent(event)
+
 
 class Port(QtWidgets.QGraphicsObject):
     PORT_SIZE = 12
