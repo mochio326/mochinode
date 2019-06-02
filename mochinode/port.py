@@ -149,6 +149,13 @@ class PortLabel(QtWidgets.QGraphicsItem):
 
     def mousePressEvent(self, event):
         self.port.expand()
+        self.port.node.drag = True
+
+    def mouseMoveEvent(self, event):
+        self.port.node.mouseMoveEvent(event)
+
+    def mouseReleaseEvent(self, event):
+        self.port.node.mouseReleaseEvent(event)
 
 
 class Port(QtWidgets.QGraphicsObject):

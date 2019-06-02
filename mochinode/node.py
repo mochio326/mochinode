@@ -126,10 +126,6 @@ class Node(QtWidgets.QGraphicsObject):
 
         self.moved.connect(self.update_connect_all_line_pos)
 
-
-    def refresh_id(self):
-        self.id = str(uuid.uuid4())
-
     def add_port(self, port_type, color, value_type=None, label=None, value=None):
         p = port.Port(self, port_type=port_type, color=color, value_type=value_type, label=label, value=value)
         self.deploying_port()
@@ -200,10 +196,6 @@ class Node(QtWidgets.QGraphicsObject):
         super(Node, self).mouseMoveEvent(event)
 
         if self.drag:
-            # 自身以外も選択されている場合にまとめて処理する
-            # for _n in self.scene().selectedItems():
-            #     for _p in _n.children_ports_all_iter():
-            #         _p.update_connect_line_pos()
             self.moved.emit()
             self.scene().update()
 
