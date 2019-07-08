@@ -29,7 +29,7 @@ class NodeLabel(QtWidgets.QGraphicsItem):
         painter.drawPath(self.shape())
 
         painter.setPen(self.pen)
-        painter.setFont(QtGui.QFont('Decorative', 10))
+        painter.setFont(QtGui.QFont('Decorative', 10, QtGui.QFont.Bold))
         rect = self.boundingRect()
         rect.moveTop(rect.y() - 2)
         painter.drawText(rect, QtCore.Qt.AlignCenter, self.label)
@@ -79,12 +79,31 @@ class Node(QtWidgets.QGraphicsObject):
     @property
     def ports(self):
         # リストでアクセス用
-        return [_item for _item in self.childItems() if isinstance(_item, port.Port)]
+        return [_item for _item in self.childItems() if isinstance(_item, self.port_cls)]
+
+    @property
+    def in_ports(self):
+        # リストでアクセス用
+        return [_p for _p in self.ports if _p.type == 'in']
+
+    @property
+    def out_ports(self):
+        # リストでアクセス用
+        return [_p for _p in self.ports if _p.type == 'out']
 
     @property
     def port(self):
         # 辞書でアクセス用
         return {str(_p.name):_p for _p in self.children_ports_all_iter()}
+
+    @property
+    def label(self):
+        return self._label_widget.label
+
+    @label.setter
+    def label(self, v):
+        self._label_widget.label = v
+
 
     def __init__(self, name='', width=140, height=60, label='node'):
         super(Node, self).__init__()
@@ -94,6 +113,7 @@ class Node(QtWidgets.QGraphicsObject):
         self.width = width
         self.height = height
         self.drag = False
+        self.port_cls = port.Port
 
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
@@ -119,7 +139,7 @@ class Node(QtWidgets.QGraphicsObject):
 
 
         if label is not None:
-            self.label = NodeLabel(self, label)
+            self._label_widget = NodeLabel(self, label)
             self.port_init_y = 30
         else:
             self.port_init_y = 10
@@ -127,7 +147,7 @@ class Node(QtWidgets.QGraphicsObject):
         self.moved.connect(self.update_connect_all_line_pos)
 
     def add_port(self, port_type, color, value_type=None, label=None, value=None):
-        p = port.Port(self, port_type=port_type, color=color, value_type=value_type, label=label, value=value)
+        p = self.port_cls(self, port_type=port_type, color=color, value_type=value_type, label=label, value=value)
         self.deploying_port()
         self.update()
         return p
