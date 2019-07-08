@@ -248,11 +248,15 @@ class Line(QtWidgets.QGraphicsPathItem):
         self.source.change_to_hover_color()
 
     def hoverLeaveEvent(self, event):
+        self.change_to_basic_color()
+        self.target.change_to_basic_color()
+        self.source.change_to_basic_color()
+
+    def change_to_basic_color(self):
         self.pen.setColor(self.color)
         self.arrow.pen.setColor(self.color)
         self.setPen(self.pen)
-        self.target.change_to_basic_color()
-        self.source.change_to_basic_color()
+
 
     def paint(self, painter, option, widget):
         painter.setPen(self.pen)
