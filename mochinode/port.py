@@ -98,12 +98,12 @@ class PortLabel(QtWidgets.QGraphicsItem):
         super(PortLabel, self).__init__(parent)
         self.label = label
         self.text_size = 10
-        self.port_value_visible = True
+        self.port_value_visible = False
 
         # Pen.
         self.pen = QtGui.QPen()
         self.pen.setStyle(QtCore.Qt.SolidLine)
-        self.pen.setWidth(2)
+        self.pen.setWidth(3)
         self.pen.setColor(QtGui.QColor(200, 200, 200, 255))
 
     def paint(self, painter, option, widget):
@@ -182,6 +182,14 @@ class Port(QtWidgets.QGraphicsObject):
             h = h + _p.height_space
         return h
 
+    @property
+    def label(self):
+        return self._label_widget.label
+
+    @label.setter
+    def label(self, v):
+        self._label_widget.label = v
+
     def __init__(self, parent, label, port_type=None, color=None, value_type=None, value=None):
         super(Port, self).__init__(parent)
         self.setAcceptHoverEvents(True)
@@ -208,7 +216,7 @@ class Port(QtWidgets.QGraphicsObject):
         self.rect = QtCore.QRect(rect_x, 0, 12, 12)
 
         if label is not None:
-            self.label = PortLabel(self, label)
+            self._label_widget = PortLabel(self, label)
 
         self.expand_box = PortExpandBox(self)
 
